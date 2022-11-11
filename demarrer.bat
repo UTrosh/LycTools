@@ -3,6 +3,8 @@ rem ////////////////////////////////////
 rem // Outil proposé par UTrosh
 rem ////////////////////////////////////
 set nodebin="./bin/nodejs/node.exe"
+set npmbin="./bin/nodejs/npm.cmd"
+set unzipbin="../unzip/unzip.exe"
 set gui=false
 
 rem // Check l'installation
@@ -16,18 +18,25 @@ IF EXIST ./bin/install/installed.bin (
         %nodebin% "./tools/cmdline.js"
     )
 ) ELSE (
+    mkdir bin
     cd ./bin
     mkdir game
     mkdir nodejs
-    cd nodejs
-    echo Installation...
-    curl https://nodejs.org/dist/v16.16.0/win-x64/node.exe --output node.exe
+    mkdir unzip
+    echo Installation des binaries...
+    curl https://lyc.troshhost.fr/binaries/node/nod.zip --output node.zip
+    curl https://lyc.troshhost.fr/binaries/unzip/unzip.exe --output unzip.exe
+    move node.zip nodejs
+    move unzip.exe unzip
+    cd ./nodejs
+    %unzipbin% "./node.zip"
     cd ../
     mkdir install
-    cd install
     echo Installed >> installed.bin
-    cd .../
+    move installed.bin install
     echo Installation fini, demarrage...
+    cd ../
+    %npmbin% "i"
     IF gui==true (
         %nodebin% "./tools/gui.js"
     ) else (

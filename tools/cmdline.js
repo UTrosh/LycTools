@@ -97,27 +97,27 @@ term.inputField(
                 return inputfield()
             } else {
                 console.log("\nRecherche du jeu en cours".bgYellow)
-                if (fs.existsSync(`../bin/game/${args[2]}`)) {
+                if (fs.existsSync(`./bin/game/${args[2]}`)) {
                     console.log("Ce jeu est déja installé, si il est corrompu, il faut le déinstallé et le réinstallé".red)
                 } else {
                 req.get(`${baseapi}/gamelist/${args[2]}.zip`).then((res) => {
 
-                    shell.mkdir(`-p`, `../bin/game/${args[2]}`)
+                    shell.mkdir(`-p`, `./bin/game/${args[2]}`)
                     ds.get(`${baseapi}/gamelist/${args[2]}.zip`,(res) => {
                         console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
                         // Image will be stored at this path
-                        const path = `../bin/game/${args[2]}/${args[2]}.zip`; 
+                        const path = `./bin/game/${args[2]}/${args[2]}.zip`; 
                         const filePath = fs.createWriteStream(path);
                         res.pipe(filePath);
                         filePath.on('finish',() => {
                             filePath.close();
                             console.log('Téléchargement terminé, installation en cours...'.green);
-                            fs.createReadStream(`../bin/game/${args[2]}/${args[2]}.zip`)
-                            .pipe(unzip.Extract({ path: `../bin/game/${args[2]}/` }))
+                            fs.createReadStream(`./bin/game/${args[2]}/${args[2]}.zip`)
+                            .pipe(unzip.Extract({ path: `./bin/game/${args[2]}/` }))
                             .promise()
                             .then(() => {
                                 console.log('Installation terminé, nettoyage en cours...'.green);
-                                shell.rm('-rf', `../bin/game/${args[2]}/${args[2]}.zip`)
+                                shell.rm('-rf', `./bin/game/${args[2]}/${args[2]}.zip`)
                                 console.log(`Le jeu ${args[2]} est désormais installé, pour le lancer, écriver "game launch ${args[2]}"`.bgGreen)
                             })
                         })
@@ -141,13 +141,13 @@ term.inputField(
                 return inputfield()
             } else {
                 console.log("\nRecherche du jeu en cours".bgYellow)
-                fs.access(`../bin/game/${args[2]}`, function(error) {
+                fs.access(`./bin/game/${args[2]}`, function(error) {
                     if (error) {
                         console.log("Ce jeu n'est pas installé".red)
                         return inputfield()
                     } else {
                         console.log('Désinstallation en cours...'.yellow)
-                        shell.rm('-rf', `../bin/game/${args[2]}`)
+                        shell.rm('-rf', `./bin/game/${args[2]}`)
                         console.log('Désintallation terminé !'.green)
                         return inputfield()
                     }
