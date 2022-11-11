@@ -5,8 +5,8 @@ const req = require('axios');
 const { exec } = require('child_process');
 let versionp;
 const licensecode = "admins"
-var ds = require('https');
-var fs = require('fs');
+const Downloader = require("nodejs-file-downloader");
+const fs = require('fs');
 const unzip = require('unzipper');
 
 
@@ -85,7 +85,7 @@ Et pour quitter, écrivez "exit" ou "leave"`.bgGreen)
 function inputfield() {
 term.inputField(
     {autoComplete: autoComplete ,autoCompleteHint: true , autoCompleteMenu: true},
-    function( error , input ) {
+    async function( error , input ) {
         if (input.includes("help" || "aide")) {
             console.log(`
                             Liste des commandes                     `.bgYellow)
@@ -113,35 +113,36 @@ term.inputField(
                 if (fs.existsSync(`./bin/game/${args[2]}`)) {
                     console.log("Ce jeu est déja installé, si il est corrompu, il faut le déinstallé et le réinstallé".red)
                 } else {
-                    console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
-                req.get(`${baseapi}/gamelist/${args[2]}.zip`).then((res) => {
-
-                    shell.mkdir(`-p`, `./bin/game/${args[2]}`)
-
-                    ds.get(`${baseapi}/gamelist/${args[2]}.zip`,(res) => {
-                  
-                        // Image will be stored at this path
-                        const path = `./bin/game/${args[2]}/${args[2]}.zip`; 
-                        const filePath = fs.createWriteStream(path);
-                        res.pipe(filePath);
-                        filePath.on('finish',() => {
-                            filePath.close();
-                            console.log('Téléchargement terminé, installation en cours...'.green);
-                            fs.createReadStream(`./bin/game/${args[2]}/${args[2]}.zip`)
-                            .pipe(unzip.Extract({ path: `./bin/game/${args[2]}/` }))
-                            .promise()
-                            .then(() => {
-                                console.log('Installation terminé, nettoyage en cours...'.green);
-                                shell.rm('-rf', `./bin/game/${args[2]}/${args[2]}.zip`)
-                                console.log(`Le jeu ${args[2]} est désormais installé, pour le lancer, écriver "game launch ${args[2]}"`.bgGreen)
+                    
+                        shell.mkdir(`./bin/game/${args[2]}`)
+                        function onResponse(res) {
+                            console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
+             }
+                        const downloader = new Downloader({
+                          url: `${baseapi}/gamelist/${args[2]}.zip`,
+                          directory: `./bin/game/${args[2]}`, 
+                          onResponse,
+                        });
+                      
+                        try {
+                          await downloader.download().then(() => {
+                            console.log("Téléchargement terminé, installation en cours...".green)
+                          fs.createReadStream(`./bin/game/${args[2]}/${args[2]}.zip`)
+                          .pipe(unzip.Extract({ path: `./bin/game/${args[2]}/` }))
+                          .promise()
+                          .then(() => {
+                              console.log('Installation terminé, nettoyage en cours...'.green);
+                              shell.rm('-rf', `./bin/game/${args[2]}/${args[2]}.zip`)
+                              console.log(`Le jeu ${args[2]} est désormais installé, pour le lancer, écriver "game launch ${args[2]}"`.bgGreen)
                             })
-                        })
-                    })
-                }).catch(err => {
-                    if (err.message.includes("404")) {
-                        return console.log("\nCe jeu n'est pas encore disponible".red)
-                    }
-                })
+              })
+                        } catch (error) {
+                          console.log("Le jeu n'est pas encore disponible".red);
+                          shell.rm('-rf', `./bin/game/${args[2]}`)
+                          return inputfield()
+                        }
+                  
+                           
             }
                      
   
