@@ -113,10 +113,11 @@ term.inputField(
                 if (fs.existsSync(`./bin/game/${args[2]}`)) {
                     console.log("Ce jeu est déja installé, si il est corrompu, il faut le déinstallé et le réinstallé".red)
                 } else {
+                    console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
                 req.get(`${baseapi}/gamelist/${args[2]}.zip`).then((res) => {
 
                     shell.mkdir(`-p`, `./bin/game/${args[2]}`)
-                    console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
+
                     ds.get(`${baseapi}/gamelist/${args[2]}.zip`,(res) => {
                   
                         // Image will be stored at this path
@@ -172,7 +173,8 @@ term.inputField(
         } else if (input.includes("game launch" || "jeux launch")) {
             const args = input.split(" ")
             if (!args[2]) {
-                return console.log("Utilisation : game launch".green + " <nom du jeu>")
+                console.log("Utilisation : game launch".green + " <nom du jeu>")
+                return inputfield()
             } else {
                 fs.access(`./bin/game/${args[2]}`, function(error) {
                     if (error) {
