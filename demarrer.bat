@@ -3,13 +3,18 @@ rem ////////////////////////////////////
 rem // Outil proposé par UTrosh
 rem ////////////////////////////////////
 set nodebin="./bin/nodejs/node.exe"
+set gui=false
 
 rem // Check l'installation
 title LycTools [] 0.1B
 echo Verification de l'installation...
 IF EXIST ./bin/install/installed.bin (
     echo Demarrage...
-    %nodebin% "./tools/index.js"
+    IF gui==true (
+        %nodebin% "./tools/gui.js"
+    ) else (
+        %nodebin% "./tools/cmdline.js"
+    )
 ) ELSE (
     cd ./bin
     mkdir nodejs
@@ -22,5 +27,9 @@ IF EXIST ./bin/install/installed.bin (
     echo Installed >> installed.bin
     cd .../
     echo Installation fini, demarrage...
-    %nodebin% ./tools/index.js
+    IF gui==true (
+        %nodebin% "./tools/gui.js"
+    ) else (
+        %nodebin% "./tools/cmdline.js"
+    )
 )
