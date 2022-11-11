@@ -2,9 +2,9 @@ const c = require('colors')
 const term = require( 'terminal-kit' ).terminal ;
 const shell = require('shelljs')
 const req = require('axios');
-
+const { exec } = require('child_process');
 let versionp;
-const licensecode = null
+const licensecode = "admins"
 var ds = require('https');
 var fs = require('fs');
 const unzip = require('unzipper');
@@ -36,9 +36,15 @@ console.log(`
                                                                      `.blue)
 console.log('Démarrage en cours...'.blue)
 console.log("Requête à l'api...".yellow)
-req.get(`${baseapi}/lyctools/licenses.php?license=${licensecode}`)
+req.get(`${baseapi}/licenses.php?key=${licensecode}`)
   .then(res => {
-    console.log('Status Code:', res.status);
+    if (res = 200) {
+        console.log("[API] Version payant activé..".green)
+        return paidversion()
+    } else {
+        console.log("[API] License invalide... version gratuit activé..".yellow)
+        return freeversion()
+    }
   })
   .catch(err => {
     if (err.message.includes("404")) {
@@ -58,6 +64,13 @@ async function freeversion() {
     versionp = "free"
     return terminalfinal();
 }
+
+async function paidversion() {
+    console.log('Initialisation de la version premium...'.bgGreen)
+    versionp = "Premium"
+    return terminalfinal();
+}
+
 
 async function terminalfinal() {
     console.log(`Bienvenue !
@@ -103,8 +116,9 @@ term.inputField(
                 req.get(`${baseapi}/gamelist/${args[2]}.zip`).then((res) => {
 
                     shell.mkdir(`-p`, `./bin/game/${args[2]}`)
+                    console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
                     ds.get(`${baseapi}/gamelist/${args[2]}.zip`,(res) => {
-                        console.log("Téléchargement en cours... (il peut durer longtemps)".yellow)
+                  
                         // Image will be stored at this path
                         const path = `./bin/game/${args[2]}/${args[2]}.zip`; 
                         const filePath = fs.createWriteStream(path);
@@ -154,7 +168,35 @@ term.inputField(
                   })
                 
             }
-        } else {
+        
+        } else if (input.includes("game launch" || "jeux launch")) {
+            const args = input.split(" ")
+            if (!args[2]) {
+                return console.log("Utilisation : game launch".green + " <nom du jeu>")
+            } else {
+                fs.access(`./bin/game/${args[2]}`, function(error) {
+                    if (error) {
+                        console.log("Ce jeu n'est pas installé".red)
+                        return inputfield()
+                    } else {
+                        fs.readFile(`./bin/game/${args[2]}/lyclaunch.bin`, 'utf8', function(err, data) {
+                            if (err) return console.log("Ce jeu est corrompu, désintallé le et réinstallé le".bgRed)
+                            console.log('\nLancement du jeu...'.green)
+                            filedata = data
+                            console.log('\nOption de lancement : ' + filedata)
+                            exec(`"./bin/game/${args[2]}/${filedata}"`, (err, stdout, stderr) => {
+                                if (err) return console.log(`Jeu corrompu, veuillez le réinstaller. (${err})`.red);
+                    });
+                            return inputfield()
+                        
+                        });
+                        
+                    }
+                  })
+            }
+        }
+        
+        else {
             console.log("\nCommande invalide".red)
             return inputfield()
         }
