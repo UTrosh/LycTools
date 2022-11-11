@@ -17,6 +17,7 @@ IF EXIST ./bin/install/installed.bin (
     )
 ) ELSE (
     cd ./bin
+    mkdir game
     mkdir nodejs
     cd nodejs
     echo Installation...
