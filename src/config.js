@@ -11,7 +11,7 @@ const gui = false; /*
 Remplacer par true si vous voulez utiliser la version GUI
 */
 
-const version = "0.0.3" // NE MODIFIER PAS SA
+const version = "0.0.4" // NE MODIFIER PAS SA
 
 
 module.exports = {
