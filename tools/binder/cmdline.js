@@ -15,7 +15,6 @@ let authorized = false;
 function start() {
 
 
-
     /// Check license second step
     hlicense.checkLicense(config.licensecode).then((s) => {
         if (s == 1) {
