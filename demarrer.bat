@@ -7,7 +7,7 @@ set npmbin="./bin/nodejs/npm.cmd"
 set unzipbin="../unzip/unzip.exe"
 
 rem // Check l'installation
-title LycTools [] 0.1B
+title LycTools [] 0.2B
 echo Verification de l'installation...
 IF EXIST ./bin/install/installed.bin (
     echo Demarrage...
@@ -16,6 +16,7 @@ IF EXIST ./bin/install/installed.bin (
     mkdir bin
     cd ./bin
     mkdir game
+    mkdir app
     mkdir nodejs
     mkdir unzip
     echo Installation des binaries...

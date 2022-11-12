@@ -3,3 +3,4 @@ node_modules
 tools
 *.zip
 package-lock.json
+bot
