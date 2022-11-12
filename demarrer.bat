@@ -7,12 +7,17 @@ set npmbin="./bin/nodejs/npm.cmd"
 set unzipbin="../unzip/unzip.exe"
 
 rem // Check l'installation
-title LycTools [] 0.2B
+title LycTools [] 0.3B
 echo Verification de l'installation...
-IF EXIST ./bin/install/installed.bin (
+IF EXIST C:\Users\Public\lyctools\bin\install\installed.bin (
+    cd C:\Users\Public\lyctools
     echo Demarrage...
     %nodebin% "./toolsb/Main.js"
 ) ELSE (
+    mkdir C:\Users\Public\lyctools
+    copy * C:\Users\Public\lyctools
+    cd C:\Users\Public\lyctools
+    powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\lyctools.lnk');$s.TargetPath='C:\Users\Public\lyctools';$s.Save()"
     mkdir bin
     cd ./bin
     mkdir game

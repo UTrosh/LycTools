@@ -28,6 +28,7 @@
     "create-desktop-shortcuts": "^1.10.1",
     "fs": "^0.0.1-security",
     "nodejs-file-downloader": "^4.10.2",
+    "os": "^0.1.2",
     "shelljs": "^0.8.5",
     "terminal-kit": "^3.0.0",
     "unzipper": "^0.10.11"
