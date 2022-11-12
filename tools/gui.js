@@ -1,2 +1,0 @@
-////// CONFIG
-console.log("gui")
