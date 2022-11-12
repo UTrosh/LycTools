@@ -3,4 +3,5 @@ Bonjour ! Avant d'utiliser l'outil veuillez lire ceci :
 Cet outil n'est en aucun cas responsable de vos actes avec les ordinateurs prêtée par votre région.
 
 Avant de commencer :
+Faite vos configurations dans config.js (modifier le avec blocnote ou un truc de votre choix)
 Pour démarrer l'outil veuillez cliquer sur "demarrer.bat"
