@@ -13,16 +13,8 @@ const fs = require('fs');
 
 let authorized = false;
 function start() {
-    /// Check file first step
 
-      if (!fs.existsSync('./tools/helper/licenseHelp.js')) {
-        console.log("Des fichier sont manquants, sois vous avez pris un crack, sois vous l'avez mal installé.".bgRed)
-        return process.exit()
-      }
-      if (!fs.existsSync('./tools/input/fieldInput.js')) {
-        console.log("Des fichier sont manquants, sois vous avez pris un crack, sois vous l'avez mal installé.".bgRed)
-        return process.exit()
-      }
+
 
     /// Check license second step
     hlicense.checkLicense(config.licensecode).then((s) => {
