@@ -40,7 +40,7 @@ function inputfield() {
                 console.log("game uninstall".green + " <nom du jeu>" + " | désinstalle un jeu".green)
                 console.log("game list".green + " | Liste tout les jeux disponibles".green)
                 console.log("\n")
-                console.log("Logiciel".bgBlue)
+                console.log("Logiciel (pas encore dispo)".bgBlue)
                 console.log("app install".green + " <nom du jeu>" + " | Installe un logiciel".green)
                 console.log("app launch".green + " <nom du jeu>" + " | Lance un logiciel".green)
                 console.log("app uninstall".green + " <nom du jeu>" + " | désinstalle un logiciel".green)
@@ -153,6 +153,27 @@ function inputfield() {
                 Version : ${versionoutil}
                 Autheur : UTrosh`)
                 return inputfield()
+            } else if (input.includes("game list")) {
+                req.get(`${baseapi}/gamelist/scan.php`)
+      .then(res => {
+
+   
+
+   
+        let data = res.data
+        console.log(`\nListe des jeux`.bgBlue)
+        for (const datas of data) {
+            let datav2 = datas.split('.')
+console.log(`${datav2[0]}`)
+            
+        }
+
+        return inputfield()
+      })
+      .catch(err => {
+console.log(err)
+return inputfield()
+      })
             }
             
             else {

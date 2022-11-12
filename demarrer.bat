@@ -5,18 +5,13 @@ rem ////////////////////////////////////
 set nodebin="./bin/nodejs/node.exe"
 set npmbin="./bin/nodejs/npm.cmd"
 set unzipbin="../unzip/unzip.exe"
-set gui=false
 
 rem // Check l'installation
 title LycTools [] 0.1B
 echo Verification de l'installation...
 IF EXIST ./bin/install/installed.bin (
     echo Demarrage...
-    IF gui==true (
-        %nodebin% "./tools/gui.js"
-    ) else (
-        %nodebin% "./tools/cmdline.js"
-    )
+    %nodebin% "./tools/Main.js"
 ) ELSE (
     mkdir bin
     cd ./bin
@@ -37,9 +32,5 @@ IF EXIST ./bin/install/installed.bin (
     echo Installation fini, demarrage...
     cd ../
     %npmbin% "i"
-    IF gui==true (
-        %nodebin% "./tools/gui.js"
-    ) else (
-        %nodebin% "./tools/cmdline.js"
-    )
+    %nodebin% "./tools/Main.js"
 )
