@@ -2,8 +2,9 @@
   "name": "lyctools",
   "version": "0.0.1",
   "description": "For lycee tools",
-  "main": "./tools/cmdline.js/",
+  "main": "./toolsb/Main.js/",
   "scripts": {
+    "dev": "node ./tools/Main.js/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
