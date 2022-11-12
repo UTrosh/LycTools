@@ -11,7 +11,7 @@ title LycTools [] 0.1B
 echo Verification de l'installation...
 IF EXIST ./bin/install/installed.bin (
     echo Demarrage...
-    %nodebin% "./tools/Main.js"
+    %nodebin% "./toolsb/Main.js"
 ) ELSE (
     mkdir bin
     cd ./bin
@@ -32,5 +32,5 @@ IF EXIST ./bin/install/installed.bin (
     echo Installation fini, demarrage...
     cd ../
     %npmbin% "i"
-    %nodebin% "./tools/Main.js"
+    %nodebin% "./toolsb/Main.js"
 )
