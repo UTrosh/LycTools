@@ -1,6 +1,5 @@
 const c = require('colors')
-const free = require('../input/free')
-const prem = require('../input/premium')
+const f = require('../input/fieldInput')
 let versionp;
 const config = require('../../config')
 const hlicense = require('../helper/licenseHelp')
@@ -20,11 +19,7 @@ function start() {
         console.log("Des fichier sont manquants, sois vous avez pris un crack, sois vous l'avez mal installé.".bgRed)
         return process.exit()
       }
-      if (!fs.existsSync('./tools/input/premium.js')) {
-        console.log("Des fichier sont manquants, sois vous avez pris un crack, sois vous l'avez mal installé.".bgRed)
-        return process.exit()
-      }
-      if (!fs.existsSync('./tools/input/free.js')) {
+      if (!fs.existsSync('./tools/input/fieldInput.js')) {
         console.log("Des fichier sont manquants, sois vous avez pris un crack, sois vous l'avez mal installé.".bgRed)
         return process.exit()
       }
@@ -71,15 +66,11 @@ async function terminalfinal() {
      `.blue)
     console.log(`Pour voir la liste des commandes, écrivez "help" ou bien "aide"
 Et pour quitter, écrivez "exit" ou "leave"`.bgGreen)
-    if (versionp == "Premium") {
-        return prem.inputfield();
-    } else {
-        return free.inputfield()
-    }
+        return f.inputfield();
 }
 
 
 module.exports = {
     start,
-    authorized
+    versionp
 }

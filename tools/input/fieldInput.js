@@ -10,11 +10,14 @@ const Downloader = require("nodejs-file-downloader");
 const fs = require('fs');
 const unzip = require('unzipper');
 const baseapi = "https://lyc.troshhost.fr"
-
-if (authorized == false) {
-    console.log("Vous n'êtes pas autorisé ! éviter de gratter la version premium.".bgRed)
-    return process.exit()
-}
+let authorized;
+hlicense.checkLicense(config.licensecode).then((s) => {
+    if (s == 1) {
+        authorized = true;
+    } else {
+        authorized = false;
+    }
+})
 var autoComplete = [
 	'help' ,
 	'aide' ,
@@ -42,6 +45,9 @@ function inputfield() {
                 console.log("app launch".green + " <nom du jeu>" + " | Lance un logiciel".green)
                 console.log("app uninstall".green + " <nom du jeu>" + " | désinstalle un logiciel".green)
                 console.log("app list".green + " | Liste tout les logiciels disponibles".green)
+                console.log("\n")
+                console.log("Autre".bgBlue)
+                console.log("lyc info".green  + " | Information a propo de l'outil".green)
                 return inputfield()
             } else if (input.includes("exit" || "leave" || "quitter")) {
                 process.exit()
@@ -139,6 +145,14 @@ function inputfield() {
                         }
                       })
                 }
+            } else if (input.includes("lyc info")) {
+                let versionoutil = config.version
+              
+                console.log(`
+                Version payante : ${authorized}
+                Version : ${versionoutil}
+                Autheur : UTrosh`)
+                return inputfield()
             }
             
             else {

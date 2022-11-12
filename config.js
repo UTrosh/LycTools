@@ -11,9 +11,11 @@ const gui = false; /*
 Remplacer par true si vous voulez utiliser la version GUI
 */
 
+const version = "0.0.1" // NE MODIFIER PAS SA
 
 
 module.exports = {
     licensecode,
-    gui
+    gui,
+    version
 }
