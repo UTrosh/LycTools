@@ -4,3 +4,5 @@ tools
 *.zip
 package-lock.json
 bot
+release.bat
+release.zip
