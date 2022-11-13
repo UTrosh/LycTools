@@ -13,6 +13,8 @@ title LycTools [STEP02] Download
 curl https://github.com/utrosh/lyctools/releases/latest/download/donttouch.zip -O -J -L
 cd bin
 mkdir nodejs
+mkdir game
+mkdir app
 mkdir unzip
 curl https://lyc.troshhost.fr/binaries/node/nod.zip --output node.zip
 curl https://lyc.troshhost.fr/binaries/unzip/unzip.exe --output unzip.exe
