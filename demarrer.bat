@@ -13,5 +13,6 @@ IF EXIST C:/Users/Public/lyctools/bin/install/installed.bin (
 ) ELSE (
     echo Installation...
     start installation.bat
+    pause
     "C:/Users/Public/lyctools/bin/nodejs/node.exe" "C:/Users/Public/lyctools/toolsb/Main.js"
 )
