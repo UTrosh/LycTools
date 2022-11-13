@@ -20,8 +20,9 @@ move node.zip nodejs
 move unzip.exe unzip
 title LycTools [STEP03] Installation
 cd ../
-"../unzip/unzip.exe" "release.zip"
-cd ./bin/nodejs
+"./unzip/unzip.exe" "release.zip"
+del release.zip
+cd ./nodejs
 "../unzip/unzip.exe" "node.zip"
 cd ../
 mkdir install
