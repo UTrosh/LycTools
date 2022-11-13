@@ -4,13 +4,13 @@ rem // Outil proposé par UTrosh
 rem ////////////////////////////////////
 rem // Check l'installation
 title LycTools [STEP01] Cleaning
-del C:/Users/Public/lyctools/ /F
+rmdir "C:/Users/Public/lyctools" /Q/S
 cd C:/Users/Public
 mkdir lyctools
 cd lyctools
 mkdir bin
 title LycTools [STEP02] Download
-curl https://github.com/utrosh/lyctools/releases/latest/download/release.zip --output release.zip
+curl https://github.com/utrosh/lyctools/releases/latest/download/release.zip -O -J -L
 cd bin
 mkdir nodejs
 mkdir unzip
