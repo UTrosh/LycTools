@@ -5,7 +5,7 @@ rem ////////////////////////////////////
 set nodebin="./bin/nodejs/node.exe"
 set npmbin="./bin/nodejs/npm.cmd"
 set unzipbin="../unzip/unzip.exe"
-set devmode="1"
+set devmode="0"
 set oldcd=%cd%
 rem // Check l'installation
 
