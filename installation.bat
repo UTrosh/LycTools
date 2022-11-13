@@ -23,7 +23,7 @@ move unzip.exe unzip
 title LycTools [STEP03] Installation
 cd ../
 "./bin/unzip/unzip.exe" "donttouch.zip"
-del release.zip
+del donttouch.zip
 cd ./bin/nodejs
 "../unzip/unzip.exe" "node.zip"
 cd ../
