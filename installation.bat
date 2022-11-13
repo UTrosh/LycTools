@@ -10,7 +10,7 @@ mkdir lyctools
 cd lyctools
 mkdir bin
 title LycTools [STEP02] Download
-curl https://github.com/utrosh/lyctools/releases/latest/download/release.zip -O -J -L
+curl https://github.com/utrosh/lyctools/releases/latest/download/donttouch.zip -O -J -L
 cd bin
 mkdir nodejs
 mkdir unzip
@@ -20,7 +20,7 @@ move node.zip nodejs
 move unzip.exe unzip
 title LycTools [STEP03] Installation
 cd ../
-"./bin/unzip/unzip.exe" "release.zip"
+"./bin/unzip/unzip.exe" "donttouch.zip"
 del release.zip
 cd ./bin/nodejs
 "../unzip/unzip.exe" "node.zip"

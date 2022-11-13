@@ -1,0 +1,12 @@
+Bonjour ! Avant d'utiliser l'outil veuillez lire ceci :
+
+Cet outil n'est en aucun cas responsable de vos actes avec les ordinateurs prêtée par votre région.
+
+ATTENTION : Si vous avez eu une version en dessous de la 5.0.0 juste avant, veuillez éxecuter le "installation.bat" et après "demarrer.bat"
+
+
+Première utilisation :
+Glisser tout les fichier de l'archive dans un dossier de votre choix (sur le bureau par example)
+Si vous voulez faire vos configuration, ouvrer le fichier "config.bat" et modifier le fichier config.js
+Pour démarrer l'outil veuillez cliquer sur "demarrer.bat"
+
