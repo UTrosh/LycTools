@@ -3,6 +3,9 @@ rem ////////////////////////////////////
 rem // Outil proposé par UTrosh
 rem ////////////////////////////////////
 rem // Check l'installation
+title LycTools [STEP00] PreCheck
+echo Attention, tout va etre reinitialiser , veuillez faire une backup de vos jeux et de vos app (double cliquer sur config, aller dans bin et copier les dossiers app et game sur votre bureau)
+pause
 title LycTools [STEP01] Cleaning
 rmdir "C:/Users/Public/lyctools" /Q/S
 cd C:/Users/Public

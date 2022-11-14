@@ -10,3 +10,4 @@ Glisser tout les fichier de l'archive dans un dossier de votre choix (sur le bur
 Si vous voulez faire vos configuration, ouvrer le fichier "config.bat" et modifier le fichier config.js
 Pour démarrer l'outil veuillez cliquer sur "demarrer.bat"
 
+ATTENTION : Si vous voulez juste faire une mise à jour, veuillez double cliquer sur config.bat, aller dans le dossier bin et copier les dossiers app et game sur votre bureau. Après la réinstallation vous pouvez les remettre.
