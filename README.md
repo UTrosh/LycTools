@@ -19,4 +19,4 @@ Il faut :
 Contributeur niv2:
 A accès au source deobfusquer, il faut être une personne de confiance.
 Il faut :
-- avoir faire une pull request ou bien avoir fait 2 addons
+- avoir fait une pull request et avoir fait 2 addons
