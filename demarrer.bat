@@ -5,7 +5,7 @@ rem ////////////////////////////////////
 
 
 rem // Check l'installation
-title LycTools [] 5LimeALPHA
+title LycTools [] Demarrage
 echo Verification de l'installation...
 IF EXIST C:/Users/Public/lyctools/bin/install/installed.bin (
     echo Demarrage...
